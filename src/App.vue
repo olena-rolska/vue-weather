@@ -1,19 +1,17 @@
 <template>
   <div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''">
     <main>
-      <div class="search-box">
-        <button class="search-bar" v-for="city in cities" :key="city" @click="fetchCity(city)">{{ city }}</button>
+      <h1 class="title">Weather App</h1>
+      <div class="city-box">
+        <button class="city-bar" v-for="city in cities" :key="city" @click="fetchCity(city)">{{ city }}</button>
       </div>
 
       <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
-        <div class="location-box">
-          <div class="location"> {{ weather.name}}, {{weather.sys.country}}</div>
-          
-        </div>
-        
         <div class="weather-box">
-          <div class="temp">{{Math.round(weather.main.temp)}}°C </div>
-          <div class="weather">{{weather.weather[0].main}}</div>
+          <div class="temp">{{Math.round(weather.main.temp)}}°C</div>
+          <div class="weather-main">{{weather.weather[0].main}}</div>
+        </div>
+        <div class="weather-box">
           <div class="weather"> Atmospheric Pressure: {{weather.main.pressure}} hPa</div>
           <div class="weather"> Humidity: {{weather.main.humidity}} %</div>
           <div class="weather"> Wind speed: {{weather.wind.speed}} meter/sec</div>
@@ -78,15 +76,23 @@ export default {
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.75));
   }
 
-  .search-box {
-    width: 100%;
-    margin-bottom: 30px;
+  .title {
+    margin: 25px;
+    text-align: center;
   }
 
-  .search-box .search-bar {
-    display: block;
-    width: 100%;
-    padding: 15px;
+  .city-box {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .city-box .city-bar {
+    width: 30%;
+    padding: 65px;
     color: #313131;
     font-size: 20px;
     appearance: none;
@@ -99,42 +105,50 @@ export default {
     transition: 0.4s;
   }
 
-  .search-box .search-bar:focus {
+  .city-box .city-bar:focus {
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
     background-color: rgba(255, 255, 255, 0.75);
     border-radius: 16px 0px 16px 0px;
   }
 
-  .location-box .location {
-    color: #FFF;
-    font-size: 32px;
-    font-weight: 300;
-    font-style: italic;
-    text-align: center;
-  }
-
-  .weather-box {
-    text-align: center;
+  .weather-wrap {
+    width: 70%;
+    margin: auto;
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .weather-box .temp {
     display: inline-block;
     padding: 10px 25px;
     color: #FFF;
-    font-size: 102px;
+    font-size: 172px;
     font-weight: 900;
     text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
     background-color: rgba(255, 255, 255, 0.25);
     border-radius: 16px;
-    margin: 30px 0px;
+    margin: 0px 0px 30px;
     box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
   }
 
   .weather-box .weather {
     color: #FFF;
-    font-size: 48px;
+    font-size: 2em;
     font-weight: 700;
     font-style: italic;
     text-shadow: 3px 6px rgba(0,0,0,0.25);
+    text-align: end;
+    margin: auto;
   }
+
+  .weather-box .weather-main {
+    font-size: 68px;
+    color: #FFF;
+    font-weight: 700;
+    text-shadow: 3px 6px rgba(0,0,0,0.25);
+    text-align: center;
+  }
+
 </style>
