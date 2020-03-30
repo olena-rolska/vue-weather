@@ -1,6 +1,6 @@
 # vue-weather
 
-> A Vue.js project
+> Weather application on Vue.js
 
 ## Build Setup
 
