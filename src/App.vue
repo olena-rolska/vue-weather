@@ -3,8 +3,6 @@
     <main>
       <div class="search-box">
         <button class="search-bar" v-for="city in cities" :key="city" @click="fetchCity(city)">{{ city }}</button>
-        <button class="search-bar" v-for="city in cities" :key="city" @click="fetchCity(city)">{{ city="London" }}</button>
-        <button class="search-bar" v-for="city in cities" :key="city" @click="fetchCity(city)">{{ city="New York" }}</button>
       </div>
 
       <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
@@ -35,7 +33,7 @@ export default {
       url_base: 'https://api.openweathermap.org/data/2.5/',
       query: '',
       weather: {},
-      cities: ['Kyiv']
+      cities: ['Kyiv', 'London', 'New York']
     }
   },
   methods: {
